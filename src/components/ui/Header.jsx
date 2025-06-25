@@ -16,8 +16,8 @@ const Header = () => {
         <Icon name="Shield" size={20} color="white" strokeWidth={2} />
       </div>
       <div className="flex flex-col">
-        <span className="text-lg font-semibold text-primary font-heading">SecureBank</span>
-        <span className="text-xs text-text-secondary font-caption">Malaysia</span>
+        <span className="text-lg font-semibold text-primary font-heading">NioPay</span>
+        <span className="text-xs text-text-secondary font-caption">Philippines</span>
       </div>
     </div>
   );

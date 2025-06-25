@@ -8,7 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm ci 
+#RUN npm install
 
 # Copy source code
 COPY . .
@@ -23,7 +24,10 @@ FROM nginx:alpine
 RUN apk add --no-cache openssl
 
 # Copy built application
-COPY --from=build /app/dist /usr/share/nginx/html
+#COPY --from=build /app/dist /usr/share/nginx/html
+
+# Copy built application
+COPY --from=build /app/build /usr/share/nginx/html
 
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
