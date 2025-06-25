@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: #1E3A8A; /* Deep institutional blue - blue-800 */
+    --color-secondary: #64748B; /* Professional slate gray - slate-500 */
+    --color-accent: #059669; /* Success green - emerald-600 */
+    
+    /* Background Colors */
+    --color-background: #FAFAFA; /* Warm off-white - gray-50 */
+    --color-surface: #FFFFFF; /* Pure white - white */
+    
+    /* Text Colors */
+    --color-text-primary: #1F2937; /* Near-black - gray-800 */
+    --color-text-secondary: #6B7280; /* Medium gray - gray-500 */
+    
+    /* Status Colors */
+    --color-success: #10B981; /* Vibrant green - emerald-500 */
+    --color-warning: #F59E0B; /* Amber - amber-500 */
+    --color-error: #DC2626; /* Clear red - red-600 */
+    
+    /* Border Colors */
+    --color-border: #E5E7EB; /* Light gray border - gray-200 */
+    
+    /* Shadow Colors */
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-text-primary font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .auth-card {
+    @apply bg-surface rounded-lg shadow-card border border-border;
+  }
+  
+  .auth-button {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-150 ease-out;
+  }
+  
+  .auth-button-primary {
+    @apply auth-button bg-primary text-white hover:bg-primary/90 focus:ring-2 focus:ring-primary/20;
+  }
+  
+  .auth-input {
+    @apply w-full px-3 py-2 border border-border rounded-md bg-surface text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors duration-150;
+  }
+  
+  .process-indicator {
+    @apply flex items-center space-x-2 text-sm text-text-secondary;
+  }
+  
+  .security-badge {
+    @apply inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-success/10 text-success;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animation-reduced {
+    @media (prefers-reduced-motion: reduce) {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
