@@ -3,7 +3,7 @@ import { BrowserRouter, Routes as RouterRoutes, Route } from "react-router-dom";
 import ScrollToTop from "components/ScrollToTop";
 import ErrorBoundary from "components/ErrorBoundary";
 import Header from "components/ui/Header";
-import AuthenticationStateManager from 'components/ui/AuthenticationStateManager';
+import { AuthenticationStateManager } from 'components/ui/AuthenticationStateManager';
 import OAuthAuthenticationInitiation from "pages/o-auth-authentication-initiation";
 import AuthenticationProcessing from "pages/authentication-processing";
 import AuthenticationSuccessDashboard from "pages/authentication-success-dashboard";

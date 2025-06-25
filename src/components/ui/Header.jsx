@@ -7,7 +7,7 @@ const Header = () => {
   const location = useLocation();
 
   const toggleLanguage = () => {
-    setCurrentLanguage(prev => prev === 'EN' ? 'EN' : 'EN');
+    setCurrentLanguage(prev => prev === 'EN' ? 'MY' : 'EN');
   };
 
   const getBankLogo = () => (
@@ -16,8 +16,8 @@ const Header = () => {
         <Icon name="Shield" size={20} color="white" strokeWidth={2} />
       </div>
       <div className="flex flex-col">
-        <span className="text-lg font-semibold text-primary font-heading">NioPay</span>
-        <span className="text-xs text-text-secondary font-caption">Philippines</span>
+        <span className="text-lg font-semibold text-primary font-heading">SecureBank</span>
+        <span className="text-xs text-text-secondary font-caption">Malaysia</span>
       </div>
     </div>
   );
