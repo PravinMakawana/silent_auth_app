@@ -12,7 +12,7 @@ const AuthenticationCard = ({
   const content = {
     EN: {
       title: 'Secure Banking Access',
-      subtitle: 'SecureBank Malaysia',
+      subtitle: 'NioPay Philippines',
       description: 'Access your banking services with our advanced OAuth 2.0 security protocol. Your connection is encrypted and monitored for maximum protection.',
       buttonText: 'Secure Login',
       buttonLoadingText: 'Connecting...',
@@ -20,11 +20,11 @@ const AuthenticationCard = ({
       errorTitle: 'Authentication Error',
       retryButton: 'Try Again',
       securityNote: 'This authentication uses bank-grade security standards',
-      complianceText: 'Compliant with Bank Negara Malaysia regulations'
+      complianceText: 'Compliant with Philippines regulations'
     },
     MY: {
       title: 'Akses Perbankan Selamat',
-      subtitle: 'SecureBank Malaysia',
+      subtitle: 'NioPay Philippines',
       description: 'Akses perkhidmatan perbankan anda dengan protokol keselamatan OAuth 2.0 termaju. Sambungan anda disulitkan dan dipantau untuk perlindungan maksimum.',
       buttonText: 'Log Masuk Selamat',
       buttonLoadingText: 'Menyambung...',
@@ -32,7 +32,7 @@ const AuthenticationCard = ({
       errorTitle: 'Ralat Pengesahan',
       retryButton: 'Cuba Lagi',
       securityNote: 'Pengesahan ini menggunakan standard keselamatan gred bank',
-      complianceText: 'Mematuhi peraturan Bank Negara Malaysia'
+      complianceText: 'Mematuhi peraturan Bank Philippines'
     }
   };
 
@@ -50,7 +50,7 @@ const AuthenticationCard = ({
         </h1>
         <div className="flex items-center space-x-1 mt-1">
           <Icon name="MapPin" size={12} color="#6B7280" strokeWidth={2} />
-          <span className="text-xs text-text-secondary font-caption">Malaysia</span>
+          <span className="text-xs text-text-secondary font-caption">Philippines</span>
         </div>
       </div>
     </div>

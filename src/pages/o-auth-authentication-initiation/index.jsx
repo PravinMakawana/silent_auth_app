@@ -12,40 +12,64 @@ const OAuthAuthenticationInitiation = () => {
   const [currentLanguage, setCurrentLanguage] = useState('EN');
   const [isLoading, setIsLoading] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState('checking');
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState(''); // 'success' or 'error'
+
   const navigate = useNavigate();
   const { initiateAuthentication, error, isProcessing } = useAuthState();
 
   useEffect(() => {
-    // Simulate connection check
     const checkConnection = async () => {
       setConnectionStatus('checking');
       await new Promise(resolve => setTimeout(resolve, 1500));
       setConnectionStatus('secure');
     };
-    
+
     checkConnection();
   }, []);
 
+  useEffect(() => {
+    if (toastMessage) {
+      const timer = setTimeout(() => {
+        setToastMessage('');
+        setToastType('');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toastMessage]);
+
   const handleSecureLogin = async () => {
     if (isLoading || isProcessing) return;
-    
+
     setIsLoading(true);
-    
+
     try {
-      // Simulate OAuth parameter preparation
-      await new Promise(resolve => setTimeout(resolve, 800));
-      
-      // Initiate authentication flow
-      await initiateAuthentication();
-      
+      const url =
+        'https://silent-auth-d3pdt.nabstract.io/ac/auth-service/openIDConnect/deviceinitiated/v1/authorize?client_id=mdinovare-APPD1_015cbc15-4752-44e6-8e3c-cfe1938842e0&redirect_uri=https://niopay-appbackendp1.nabstract.io/app-backend/redirect&scope=dpv%3AFraudPreventionAndDetection%20number-verification%20openid&response_type=code&prompt=none&code_challenge=CWWsQfXdENqbDXbN744XHtsFcJlVPucOAkVRJYHgjj0&code_challenge_method=S256&state=aaeb68ca-9a68-4b4a-9aed-25e365d71bdd&nonce=bbeb78ca-9a68-4b4a-9aed-25e365d71bee&login_hint=tel:+6388431285';
+
+      const response = await fetch(url, {
+        method: 'GET',
+        redirect: 'follow',
+      });
+
+      if (response.ok) {
+        setToastMessage('✅ Authentication Initiated Successfully');
+        setToastType('success');
+      } else {
+        setToastMessage(`❌ Failed: Authentication Failed`);
+        setToastType('error');
+      }
     } catch (error) {
       console.error('Authentication initiation failed:', error);
+      setToastMessage('❌ An unexpected error occurred.');
+      setToastType('error');
+    } finally {
       setIsLoading(false);
     }
   };
 
   const toggleLanguage = () => {
-    setCurrentLanguage(prev => prev === 'EN' ? 'MY' : 'EN');
+    setCurrentLanguage(prev => prev === 'EN' ? 'EN' : 'EN'); // You may want to adjust this logic
   };
 
   const getConnectionStatusDisplay = () => {
@@ -87,6 +111,17 @@ const OAuthAuthenticationInitiation = () => {
 
   return (
     <div className="min-h-screen bg-background">
+
+      {/* ✅ Toast Message */}
+      {toastMessage && (
+        <div
+          className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 px-4 py-3 rounded-md shadow-md text-white font-medium transition-all duration-300
+      ${toastType === 'success' ? 'bg-green-500' : 'bg-red-500'}`}
+        >
+          {toastMessage}
+        </div>
+      )}
+
       {/* Main Content */}
       <div className="pt-20 pb-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -101,10 +136,10 @@ const OAuthAuthenticationInitiation = () => {
               {/* Connection Status */}
               <div className={`mb-6 p-4 ${connectionDisplay.bgColor} border ${connectionDisplay.borderColor} rounded-md`}>
                 <div className="flex items-center space-x-3">
-                  <Icon 
-                    name={connectionDisplay.icon} 
-                    size={20} 
-                    color={connectionDisplay.iconColor} 
+                  <Icon
+                    name={connectionDisplay.icon}
+                    size={20}
+                    color={connectionDisplay.iconColor}
                     strokeWidth={2}
                     className={connectionDisplay.animate ? 'animate-spin' : ''}
                   />
